@@ -1,0 +1,61 @@
+.auth-page {
+  min-height: 100vh; display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 60px;
+}
+
+/* Left panel */
+.auth-left {
+  background: var(--bg2); border-right: 1px solid var(--border);
+  padding: 48px;
+  display: flex; flex-direction: column;
+}
+.auth-logo {
+  font-family: var(--heading); font-size: 20px; font-weight: 800; color: var(--white);
+}
+.auth-left-content { margin-top: auto; margin-bottom: auto; padding: 40px 0; }
+
+.auth-perks { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; }
+.auth-perk { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--body); }
+.ap-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* Right panel */
+.auth-right {
+  display: flex; align-items: center; justify-content: center;
+  padding: 48px 32px;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,229,160,0.04) 0%, transparent 70%);
+}
+.auth-card { width: 100%; max-width: 420px; padding: 36px; }
+
+.auth-tabs { display: flex; gap: 0; }
+.auth-tab {
+  flex: 1; padding: 12px; font-size: 14px; font-weight: 600;
+  background: none; border: none; color: var(--muted);
+  border-bottom: 2px solid transparent; transition: var(--tr); cursor: pointer;
+  text-align: center;
+}
+.auth-tab:hover { color: var(--white); }
+.auth-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.auth-tab-line { height: 1px; background: var(--border); margin-bottom: 28px; }
+
+.auth-title { font-size: 24px; font-weight: 700; }
+
+.auth-form { display: flex; flex-direction: column; gap: 16px; }
+
+.auth-switch-text {
+  text-align: center; margin-top: 24px;
+  font-size: 13px; color: var(--sub);
+  border-top: 1px solid var(--border); padding-top: 20px;
+}
+.auth-link {
+  background: none; border: none; color: var(--accent);
+  font-size: 13px; font-weight: 600; cursor: pointer; padding: 0;
+}
+.auth-link:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .auth-page { grid-template-columns: 1fr; }
+  .auth-left { display: none; }
+  .auth-right { padding: 32px 20px; align-items: flex-start; padding-top: 48px; }
+  .auth-card { max-width: 100%; }
+}

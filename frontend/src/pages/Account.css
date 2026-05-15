@@ -1,0 +1,54 @@
+.account-page { padding-top: 60px; min-height: 100vh; padding-bottom: 80px; }
+
+.account-header {
+  display: flex; align-items: center; gap: 20px;
+  padding: 48px 0 40px;
+}
+.acct-avatar {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--accent); color: #000a06;
+  font-family: var(--heading); font-size: 26px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.account-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+
+/* Wallet card */
+.wallet-card { padding: 28px; }
+.wc-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.wc-balance {
+  font-family: var(--heading); font-size: 48px; font-weight: 800;
+  color: var(--accent); letter-spacing: -2px; line-height: 1;
+}
+.wc-icon {
+  width: 48px; height: 48px; border-radius: var(--r);
+  background: rgba(0,229,160,0.1); border: 1px solid rgba(0,229,160,0.2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+}
+
+.topup-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.topup-chip {
+  padding: 8px 14px; font-size: 13px; font-weight: 600;
+  background: var(--bg3); border: 1px solid var(--border);
+  color: var(--sub); border-radius: var(--r); cursor: pointer;
+  transition: var(--tr);
+}
+.topup-chip:hover { border-color: var(--accent); color: var(--accent); }
+.topup-chip.active { background: rgba(0,229,160,0.1); border-color: var(--accent); color: var(--accent); }
+
+.topup-form { display: flex; flex-direction: column; gap: 14px; }
+
+/* Info cards */
+.info-card { padding: 20px; }
+.info-rows { display: flex; flex-direction: column; }
+.info-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; font-size: 13px; color: var(--sub);
+  border-bottom: 1px solid var(--border);
+}
+.info-row:last-child { border-bottom: none; }
+.info-row span:last-child { color: var(--white); font-weight: 500; }
+
+@media (max-width: 768px) { .account-grid { grid-template-columns: 1fr; } }

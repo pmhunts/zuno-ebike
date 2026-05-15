@@ -1,0 +1,95 @@
+.stations-page { padding-top: 60px; min-height: 100vh; }
+
+.stations-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 32px 0 28px; }
+.sh-inner { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.sh-controls { display: flex; align-items: center; gap: 12px; }
+
+.view-toggle { display: flex; border: 1px solid var(--border2); border-radius: var(--r); overflow: hidden; }
+.view-toggle button { padding: 8px 18px; font-size: 13px; font-weight: 600; background: none; border: none; color: var(--sub); cursor: pointer; transition: var(--tr); }
+.view-toggle button.active { background: var(--accent); color: #000a06; }
+.view-toggle button:hover:not(.active) { color: var(--white); background: rgba(255,255,255,0.04); }
+
+.geo-loading { display: flex; align-items: center; }
+.stations-body { padding-top: 24px; padding-bottom: 40px; }
+
+.map-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start; }
+.map-panel { position: relative; }
+
+.map-gps-badge {
+  position: absolute; bottom: 12px; left: 12px; z-index: 1000;
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 12px; border-radius: 20px;
+  background: rgba(8,12,18,0.85); border: 1px solid rgba(0,229,160,0.3);
+  font-size: 11px; font-weight: 600; color: var(--accent);
+  backdrop-filter: blur(8px); pointer-events: none;
+}
+.gps-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px var(--accent); animation: pulse 1.5s infinite; }
+
+.map-side { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 80px; max-height: calc(100vh - 120px); overflow-y: auto; }
+
+.selected-station-panel { padding: 20px; }
+.ssp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 14px; }
+.ssp-name { font-family: var(--heading); font-size: 16px; font-weight: 700; color: var(--white); }
+
+.ssp-bikes { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: var(--r); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ssp-bikes.ok   { background: rgba(0,229,160,0.1); color: var(--accent); border: 1px solid rgba(0,229,160,0.2); }
+.ssp-bikes.none { background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+
+.ssp-distance { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--sub); margin-bottom: 6px; }
+.ssp-coords { margin-bottom: 4px; }
+.no-selected { padding: 20px; }
+
+.nearby-list { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+.nearby-list .label { padding: 14px 16px 0; display: block; }
+.nearby-row { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 11px 16px; gap: 8px; background: none; border: none; border-bottom: 1px solid var(--border); cursor: pointer; transition: background var(--tr); text-align: left; }
+.nearby-row:last-child { border-bottom: none; }
+.nearby-row:hover { background: rgba(255,255,255,0.03); }
+.nearby-row.active { background: rgba(0,229,160,0.06); border-left: 2px solid var(--accent); }
+.nr-left { flex: 1; min-width: 0; }
+.nr-name { font-size: 13px; font-weight: 600; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; flex-shrink: 0; }
+.nr-bikes { font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 3px; min-width: 20px; text-align: center; }
+.nr-bikes.ok   { background: rgba(0,229,160,0.1); color: var(--accent); }
+.nr-bikes.none { background: var(--bg3); color: var(--muted); }
+
+.city-group { margin-bottom: 40px; }
+.city-group-title { font-family: var(--heading); font-size: 13px; font-weight: 700; color: var(--sub); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.stations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+@media (max-width: 1000px) { .map-layout { grid-template-columns: 1fr; } .map-side { position: static; max-height: none; } }
+@media (max-width: 900px) { .stations-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .stations-grid { grid-template-columns: 1fr; } }
+
+/* ── Shared location bar (also used in Ride.jsx) ─── */
+.station-loc-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 14px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r); flex-wrap: wrap; gap: 8px;
+}
+.slb-left { display: flex; align-items: center; gap: 8px; }
+
+.lb-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.lb-dot.gps    { background: var(--accent); box-shadow: 0 0 5px var(--accent); animation: pulse 1.5s infinite; }
+.lb-dot.manual { background: var(--blue);   box-shadow: 0 0 5px var(--blue); }
+.lb-dot.none   { background: var(--muted); }
+
+.lb-reset {
+  background: none; border: 1px solid var(--border); color: var(--muted);
+  font-size: 11px; cursor: pointer; padding: 2px 8px;
+  border-radius: 4px; transition: var(--tr);
+}
+.lb-reset:hover { color: var(--white); border-color: var(--border2); }
+
+.lb-manual-btn {
+  background: none; border: 1px solid var(--border2);
+  color: var(--sub); font-size: 12px; font-weight: 600;
+  padding: 5px 12px; border-radius: 4px; cursor: pointer;
+  transition: var(--tr); white-space: nowrap;
+}
+.lb-manual-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+.loc-search-wrap {
+  padding: 14px; background: var(--bg3);
+  border: 1px solid var(--border); border-radius: var(--r);
+}
